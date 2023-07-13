@@ -15,7 +15,7 @@ import org.testng.annotations.DataProvider;
 //
 @CucumberOptions(
 		monochrome = true,
-		features = {"src/test/resources/features-app"},
+		features = {"src/test/resources/features"},
 		glue = {"com.digy4.cucumber.steps","com.digy4.java.mobiletesting.cucumber.android"},
 		plugin = {"pretty","json:target/cucumber/report.json", "html:target/cucumber/report.html",
 				  "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
