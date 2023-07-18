@@ -18,17 +18,18 @@ Cucumber with TestNG and Selenium/Appium starter to use with DigyRunner
 - Clone the repository. Run `git clone https://github.com/Digy4/cucumber-testng-appium-starter`
 - `cd cucumber-testng-appium-starter`
 
-### Upload your app to BrowserStack
-Testing your app against browserstack, You'd like to upload our app to Browserstack server first `curl -u "browserstack_username:browserstack_access_key" \
--X POST "https://api-cloud.browserstack.com/app-automate/upload" \
--F "file=@/path/to/your/app/appname.apk|.ipa"`
+### Download APK file and upload to BrowserStack
+#### Download eBay APK file from:
+- https://apkcombo.com/ebay/com.ebay.mobile/download/phone-6.90.0.1-apk (manually download this apk file)
+#### Upload APK file to BrowserStack
+- curl -u "username:access_key" \ 
+ -X POST "https://api-cloud.browserstack.com/app-automate/upload" \ 
+ -F "file=@/path/to/your/app/eBay_6.90.0.1_apkcombo.com.apk"
+- Then the response should like 
+   {"app_url":"bs://1d9a80cc6a33e93e1b39986d8baefdee79808cc5"}
 
-Then the response should like `{"app_url":"bs://1d9a80cc6a33e93e1b39986d8baefdee79808cc5"}`, the app_url will be used in the following app property -Ddigy4.browserstack.android.app=bs://1d9a80cc6a33e93e1b39986d8baefdee79808cc5
-
-### Add Automation for your app
-- Feature file location src/resources/features
-- Step Definition - src/java/logic and src/java/pages
-- Sample automation available under src/java
+The app_url will be used in the following app property
+-Ddigy4.browserstack.android.app=bs://1d9a80cc6a33e93e1b39986d8baefdee79808cc5
 
 ### Run the Test
 - For -Ddigy4.projectName=, use the project name you have created above (eg: Demo)
