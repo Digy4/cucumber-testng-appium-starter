@@ -1,4 +1,5 @@
 package com.digy4.cucumber;
+
 import cucumber.utils.GetProperties;
 import cucumber.utils.JiraInteraction;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
@@ -13,14 +14,12 @@ import org.testng.annotations.DataProvider;
 // Proprietary and confidential
 // Any illegal or unauthorised usage or violations will result in immediate legal action.
 //
-@CucumberOptions(
-		monochrome = true,
-		features = {"src/test/resources/features"},
-		glue = {"com.digy4.cucumber.steps","com.digy4.java.mobiletesting.cucumber.android"},
-		plugin = {"pretty","json:target/cucumber/report.json", "html:target/cucumber/report.html",
-				  "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
-				  "com.digy4.java.mobiletesting.cucumber.android.Digy4AndroidAppCucumberSupport"}
-		//tags = "(@Android)"
+@CucumberOptions(monochrome = true, features = { "src/test/resources/features" }, glue = { "com.digy4.cucumber.steps",
+		"com.digy4.java.mobiletesting.cucumber.android" }, plugin = { "pretty", "json:target/cucumber/report.json",
+				"html:target/cucumber/report.html",
+				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+				"com.digy4.java.mobiletesting.cucumber.android.Digy4AndroidAppCucumberSupport" }
+// tags = "(@Android)"
 )
 public class DigyAndroidTestRunner extends AbstractTestNGCucumberTests {
 	@Override
@@ -29,9 +28,7 @@ public class DigyAndroidTestRunner extends AbstractTestNGCucumberTests {
 		return super.scenarios();
 	}
 
-	@BeforeClass(
-			alwaysRun = true
-	)
+	@BeforeClass(alwaysRun = true)
 	public void setUpClass(ITestContext context) {
 		if (GetProperties.xRayInteraction.equals("true") &&
 				"XRAY".equalsIgnoreCase(GetProperties.testManagementTool)) {
@@ -47,6 +44,7 @@ public class DigyAndroidTestRunner extends AbstractTestNGCucumberTests {
 			System.out.println("Not downloading tests from jira");
 		}
 		try {
+
 			super.setUpClass(context);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,4 +52,3 @@ public class DigyAndroidTestRunner extends AbstractTestNGCucumberTests {
 	}
 
 }
-
